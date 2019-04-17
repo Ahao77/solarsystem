@@ -2,14 +2,20 @@
 
 #include <QtWidgets/QMainWindow>
 #include "ui_Mainwindow.h"
+#include<qlayout.h>
+#include<MainWidget.h>
 
-class Mainwindow : public QMainWindow
+
+class MainWindow : public QMainWindow
 {
 	Q_OBJECT
 
 public:
-	Mainwindow(QWidget *parent = Q_NULLPTR);
+	MainWindow(QWidget *parent = Q_NULLPTR);
+	~MainWindow();
+	void set_window_layout(MainWidget* mainwidget);
 
 private:
-	Ui::MainwindowClass ui;
+	Ui::MainwindowClass *ui;
+	QHBoxLayout *mainwindow_hlayout;
 };
