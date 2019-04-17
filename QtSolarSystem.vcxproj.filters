@@ -28,18 +28,60 @@
       <Extensions>moc;h;cpp</Extensions>
       <SourceControlFiles>False</SourceControlFiles>
     </Filter>
+    <Filter Include="Source Files\window_layer">
+      <UniqueIdentifier>{db67671a-2be2-4249-8c85-eb4b3bf8d4b1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\window_layer">
+      <UniqueIdentifier>{2ca81a80-8302-405d-b2d9-2e0fe2343dae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\paint_layer">
+      <UniqueIdentifier>{091ba376-c6c7-43b8-8367-7cb6133b13fa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\paint_layer">
+      <UniqueIdentifier>{5f18912f-57ca-43bb-9f9b-9e20112d54b2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Mainwindow.cpp">
+      <Filter>Source Files\window_layer</Filter>
+    </ClCompile>
+    <ClCompile Include="MainWidget.cpp">
+      <Filter>Source Files\window_layer</Filter>
+    </ClCompile>
+    <ClCompile Include="ControlLayer.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="OpenglWidget.cpp">
+      <Filter>Source Files\paint_layer</Filter>
+    </ClCompile>
+    <ClCompile Include="solarSystem.cpp">
+      <Filter>Source Files\paint_layer</Filter>
+    </ClCompile>
+    <ClCompile Include="planet.cpp">
+      <Filter>Source Files\paint_layer</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>Source Files\paint_layer</Filter>
+    </ClCompile>
+    <ClCompile Include="tga.cpp">
+      <Filter>Source Files\paint_layer</Filter>
+    </ClCompile>
+    <ClCompile Include="BallShader.cpp">
+      <Filter>Source Files\paint_layer</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="Mainwindow.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\window_layer</Filter>
+    </QtMoc>
+    <QtMoc Include="MainWidget.h">
+      <Filter>Header Files\window_layer</Filter>
+    </QtMoc>
+    <QtMoc Include="OpenglWidget.h">
+      <Filter>Header Files\paint_layer</Filter>
     </QtMoc>
   </ItemGroup>
   <ItemGroup>
@@ -51,5 +93,36 @@
     <QtRcc Include="Mainwindow.qrc">
       <Filter>Resource Files</Filter>
     </QtRcc>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="solarSystem.h">
+      <Filter>Header Files\paint_layer</Filter>
+    </ClInclude>
+    <ClInclude Include="planet.h">
+      <Filter>Header Files\paint_layer</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>Header Files\paint_layer</Filter>
+    </ClInclude>
+    <ClInclude Include="tga.h">
+      <Filter>Header Files\paint_layer</Filter>
+    </ClInclude>
+    <ClInclude Include="BallShader.h">
+      <Filter>Header Files\paint_layer</Filter>
+    </ClInclude>
+    <ClInclude Include="ControlLayer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="constant.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="fsrc.glsl">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="vsrc.glsl">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
 </Project>
