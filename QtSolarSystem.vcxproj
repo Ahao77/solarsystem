@@ -113,9 +113,11 @@
     </QtRcc>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ball.cpp" />
     <ClCompile Include="BallShader.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="ControlLayer.cpp" />
+    <ClCompile Include="CoreBallShader.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainWidget.cpp" />
     <ClCompile Include="Mainwindow.cpp" />
@@ -146,10 +148,12 @@
     </QtMoc>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ball.h" />
     <ClInclude Include="BallShader.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="constant.h" />
     <ClInclude Include="ControlLayer.h" />
+    <ClInclude Include="CoreBallShader.h" />
     <ClInclude Include="planet.h" />
     <ClInclude Include="solarSystem.h" />
     <ClInclude Include="tga.h" />

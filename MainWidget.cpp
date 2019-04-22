@@ -20,12 +20,14 @@ MainWidget::MainWidget(QWidget *parent)
 	button9 = new QPushButton("nuptune", this);
 	button_pause = new QPushButton("pause", this);
 	button_start = new QPushButton("start", this);
+	button_lighton = new QPushButton("light on", this);
+	button_lightoff = new QPushButton("light off", this);
 
 	slider = new QSlider(Qt::Horizontal);
-	slider->setMinimum(4);
-	slider->setMaximum(384);
-	slider->setValue(12);
-	slider->setSingleStep(4);
+	slider->setMinimum(1);
+	slider->setMaximum(60*12);
+	slider->setValue(60);
+	slider->setSingleStep(1);
 
 	date_time = new QDateTimeEdit(QDateTime::currentDateTime(), this);
 	date_time->setDisplayFormat("yyyy.MM.dd");	
@@ -51,6 +53,8 @@ MainWidget::~MainWidget()
 
 	delete[] button_pause;
 	delete[] button_start;
+	delete[] button_lighton;
+	delete[] button_lightoff;
 	delete[] slider;
 	delete[] date_time;
 
@@ -69,6 +73,7 @@ void MainWidget::set_widget_layout(OpenglWidget*openglwin)
 	rightlayout = new QVBoxLayout();
 	layout = new QGridLayout();
 	layout1 = new QVBoxLayout();
+	layout2 = new QVBoxLayout();
 
 	//set the top grid layout
 	layout->addWidget(button1, 0, 0, 1, 2);
@@ -85,12 +90,16 @@ void MainWidget::set_widget_layout(OpenglWidget*openglwin)
 	layout1->addWidget(button_pause, 0, 0);
 	layout1->addWidget(button_start, 1, 0);
 
+	layout2->addWidget(button_lighton, 0, 0);
+	layout2->addWidget(button_lightoff, 1, 0);
+
 	//set the mainwidget's left part
 	leftlayout->addWidget(openglwin);
 
 	//set the mainwidget's right part
 	rightlayout->addLayout(layout);
 	rightlayout->addLayout(layout1);
+	rightlayout->addLayout(layout2);
 	rightlayout->addWidget(date_time);
 	rightlayout->addWidget(slider);
 

@@ -13,6 +13,8 @@ planet::planet(float distanceFromSun, float orbitTime, float rotationTime, float
 	this->radius = radius;
 	this->ro_angle = ro_angle;
 
+	modelM.setToIdentity();
+
 	tga = new TGA(imagePath);
 	texture = tga->getTextureHandle();
 }
@@ -24,9 +26,9 @@ planet::~planet()
 
 void planet::calculatePosition(GLint time)
 {
-	float angle= (-time%(orbitTime*24)) * 6.28f / (orbitTime*24);
+	float angle= (-time%(orbitTime*24*60)) * 6.28f / (orbitTime*24*60);
 
-	this->rotation = (time%this->rotationTime) * 360 / this->rotationTime;
+	this->rotation = (time%(60*this->rotationTime)) * 360 / (60*this->rotationTime);
 
 	this->position[0] = sin(angle) * this->distanceFromSun;
 	this->position[1] = cos(angle) * this->distanceFromSun;
@@ -35,13 +37,22 @@ void planet::calculatePosition(GLint time)
 
 void planet::render_planet(QOpenGLExtraFunctions *f, QMatrix4x4 &projM,Camera* camera)
 {
+		BallShader::send_radius(radius);
 
-	calculate_m_points(radius);
+		draw_orbit(camera, distanceFromSun);
 
-	draw_orbit(camera, distanceFromSun);
+		BallShader::render(QOpenGLContext::currentContext()->extraFunctions(),
+			projM, camera, this->position, this->rotation, this->ro_angle, this->texture, distanceFromSun);
+}
 
-	render(QOpenGLContext::currentContext()->extraFunctions(),
-		projM, camera,modelM, this->position, this->rotation,this->ro_angle,this->texture, distanceFromSun);
+void planet::core_render_planet(QOpenGLExtraFunctions *f, QMatrix4x4 &projM, Camera* camera)
+{
+		CoreBallShader::send_radius(radius);
+
+		draw_orbit(camera, distanceFromSun);
+
+		CoreBallShader::render(QOpenGLContext::currentContext()->extraFunctions(),
+			projM, camera, modelM ,this->position, this->rotation, this->ro_angle, this->texture, distanceFromSun);
 }
 
 void planet::draw_orbit(Camera* camera, GLfloat distanceFromSun)

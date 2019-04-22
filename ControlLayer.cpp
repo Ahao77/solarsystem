@@ -52,6 +52,9 @@ void ControlLayer::set_connect()
 
 	QObject::connect(mainwidget->button_pause, &QPushButton::clicked, openglwin, &OpenglWidget::set_pause);
 	QObject::connect(mainwidget->button_start, &QPushButton::clicked, openglwin, &OpenglWidget::set_start);
+	QObject::connect(mainwidget->button_lighton, &QPushButton::clicked, openglwin, &OpenglWidget::set_light_switch_on);
+	QObject::connect(mainwidget->button_lightoff, &QPushButton::clicked, openglwin, &OpenglWidget::set_light_switch_off);
+
 	QObject::connect(mainwidget->slider, &QSlider::valueChanged, this, &ControlLayer::set_speed);
 
 	QObject::connect(mainwidget->date_time, &QDateTimeEdit::dateChanged, this, &ControlLayer::set_times);

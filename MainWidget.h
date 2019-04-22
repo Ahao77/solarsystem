@@ -31,6 +31,10 @@ public:
 
 	QPushButton *button_pause;
 	QPushButton *button_start;
+
+	QPushButton *button_lighton;
+	QPushButton *button_lightoff;
+
 	QSlider *slider;
 
 	QDateTimeEdit *date_time;
@@ -41,5 +45,6 @@ private:
 	QVBoxLayout *rightlayout;
 	QGridLayout *layout;
 	QVBoxLayout *layout1;
+	QVBoxLayout *layout2;
 };
 

@@ -22,7 +22,7 @@ public:
 	~OpenglWidget();
 	void timeset(GLint tim);
 	void speedset(GLint spe);
-	
+
 
 public slots:
 	void sun();
@@ -35,10 +35,11 @@ public slots:
 	void uranus();
 	void neptune();
 
-	
 	void set_pause();
 	void set_start();
-	
+
+	void set_light_switch_off();
+	void set_light_switch_on();
 
 protected:
 	void initializeGL() Q_DECL_OVERRIDE;
@@ -48,8 +49,9 @@ protected:
 	void OpenglWidget::mouseMoveEvent(QMouseEvent *event);
 	void check_current_planet();
 
+
 private:
-	QMatrix4x4 m_pMatrix;
+	QMatrix4x4 projM;
 	solarSystem *solarsystem;
 	Camera *camera;
 	GLint times;
@@ -57,5 +59,6 @@ private:
 	currentplanet current_planet;
 	GLint speed;
 	GLboolean pause;
+	GLboolean lightSwitch;
 };
 

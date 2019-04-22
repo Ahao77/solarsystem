@@ -44,32 +44,83 @@ void solarSystem::calculatePositions(GLint time)
 }
 
 void solarSystem::render_system(QOpenGLExtraFunctions *f, QMatrix4x4 &projM,
-	Camera* camera)
+	Camera* camera, GLboolean lightSwitch)
 {
-	f->glClearColor(0.0, 0.0, 0.0, 0.0);
-	f->glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	f->glEnable(GL_DEPTH_TEST);
-	f->glEnable(GL_CULL_FACE);
+	if (1 == 1)
+	{
+		f->glClearColor(0.0, 0.0, 0.0, 0.0);
+		f->glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+		f->glEnable(GL_DEPTH_TEST);
+		f->glEnable(GL_CULL_FACE);
 
-	sun->render_planet(QOpenGLContext::currentContext()->extraFunctions(),
+		if (lightSwitch==GL_FALSE)
+		{
+			GLfloat LightAmbient[] = { 0.8f, 0.8f, 0.8f, 1.0f }; 
+			GLfloat LightDiffuse[] = { 1.0f, 1.0f, 1.0f, 1.0f }; 
+			GLfloat LightPosition[] = { 0.0f, 0.0f, 0.0f, 1.0f };
+
+			glLightfv(GL_LIGHT1, GL_AMBIENT, LightAmbient);
+			glLightfv(GL_LIGHT1, GL_DIFFUSE, LightDiffuse); 
+			glLightfv(GL_LIGHT1, GL_POSITION, LightPosition); 
+			glEnable(GL_LIGHT1);
+			glEnable(GL_LIGHTING); 
+		}
+		else
+		{
+			glDisable(GL_LIGHT1);
+			glDisable(GL_LIGHTING);
+		}
+		
+
+		sun->render_planet(QOpenGLContext::currentContext()->extraFunctions(),
+				projM, camera);
+		mercury->render_planet(QOpenGLContext::currentContext()->extraFunctions(),
+					projM,camera);
+		venus->render_planet(QOpenGLContext::currentContext()->extraFunctions(),
+					projM, camera );
+		earth->render_planet(QOpenGLContext::currentContext()->extraFunctions(),
+					projM,camera);
+		mars->render_planet(QOpenGLContext::currentContext()->extraFunctions(),
+					projM, camera );
+		jupiter->render_planet(QOpenGLContext::currentContext()->extraFunctions(),
+					projM,camera);
+		saturn->render_planet(QOpenGLContext::currentContext()->extraFunctions(),
+					projM, camera );
+		uranus->render_planet(QOpenGLContext::currentContext()->extraFunctions(),
+					projM, camera );
+		neptune->render_planet(QOpenGLContext::currentContext()->extraFunctions(),
+					projM, camera );
+	
+		f->glDisable(GL_DEPTH_TEST);
+		f->glDisable(GL_CULL_FACE);
+	}
+	else
+	{
+		f->glClearColor(0.0, 0.0, 0.0, 0.0);
+		f->glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+		f->glEnable(GL_DEPTH_TEST);
+		f->glEnable(GL_CULL_FACE);
+
+		sun->core_render_planet(QOpenGLContext::currentContext()->extraFunctions(),
 			projM, camera);
-	mercury->render_planet(QOpenGLContext::currentContext()->extraFunctions(),
-				projM,camera);
-	venus->render_planet(QOpenGLContext::currentContext()->extraFunctions(),
-				projM, camera );
-	earth->render_planet(QOpenGLContext::currentContext()->extraFunctions(),
-				projM,camera);
-	mars->render_planet(QOpenGLContext::currentContext()->extraFunctions(),
-				projM, camera );
-	jupiter->render_planet(QOpenGLContext::currentContext()->extraFunctions(),
-				projM,camera);
-	saturn->render_planet(QOpenGLContext::currentContext()->extraFunctions(),
-				projM, camera );
-	uranus->render_planet(QOpenGLContext::currentContext()->extraFunctions(),
-				projM, camera );
-	neptune->render_planet(QOpenGLContext::currentContext()->extraFunctions(),
-				projM, camera );
+		mercury->core_render_planet(QOpenGLContext::currentContext()->extraFunctions(),
+			projM, camera);
+		venus->core_render_planet(QOpenGLContext::currentContext()->extraFunctions(),
+			projM, camera);
+		earth->core_render_planet(QOpenGLContext::currentContext()->extraFunctions(),
+			projM, camera);
+		mars->core_render_planet(QOpenGLContext::currentContext()->extraFunctions(),
+			projM, camera);
+		jupiter->core_render_planet(QOpenGLContext::currentContext()->extraFunctions(),
+			projM, camera);
+		saturn->core_render_planet(QOpenGLContext::currentContext()->extraFunctions(),
+			projM, camera);
+		uranus->core_render_planet(QOpenGLContext::currentContext()->extraFunctions(),
+			projM, camera);
+		neptune->core_render_planet(QOpenGLContext::currentContext()->extraFunctions(),
+			projM, camera);
 
-	f->glDisable(GL_DEPTH_TEST);
-	f->glDisable(GL_CULL_FACE);
+		f->glDisable(GL_DEPTH_TEST);
+		f->glDisable(GL_CULL_FACE);
+	}
 }

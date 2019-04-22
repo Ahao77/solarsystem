@@ -10,7 +10,7 @@ public:
 	~solarSystem();
 
 	void calculatePositions(GLint time);
-	void render_system(QOpenGLExtraFunctions *f, QMatrix4x4 &projM,Camera* camera);
+	void render_system(QOpenGLExtraFunctions *f, QMatrix4x4 &projM,Camera* camera,GLboolean lightSwitch);
 
 	planet *sun;
 	planet *mercury;

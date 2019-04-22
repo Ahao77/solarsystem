@@ -6,13 +6,14 @@
 #include"planet.h"
 #include<ctime>
 #include<Windows.h>
-
+#include<iostream>
 
 
 OpenglWidget::OpenglWidget(QWidget *parent)
-	:QOpenGLWidget(parent),current_planet(Sun),speed(12),pause(GL_FALSE)
+	:QOpenGLWidget(parent),current_planet(Sun),speed(60),pause(GL_FALSE),lightSwitch(GL_FALSE)
 {
-
+	projM.setToIdentity();
+	projM.perspective(75, 1, 1, 1000);
 }
 
 
@@ -28,11 +29,15 @@ void OpenglWidget::initializeGL()
 	solarsystem = new solarSystem();
 	camera=new Camera();
 	solarsystem->calculatePositions(times);
+
+	glShadeModel(GL_SMOOTH);
 }
 
 void OpenglWidget::paintGL() 
 {
 	solarsystem->calculatePositions(times);
+
+	
 
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
@@ -41,7 +46,7 @@ void OpenglWidget::paintGL()
 	check_current_planet();
 
 	solarsystem->render_system(QOpenGLContext::currentContext()->extraFunctions(),
-		m_pMatrix,camera);
+		projM,camera,lightSwitch);
 
 	if (pause == GL_FALSE)
 		times += speed;
@@ -52,8 +57,8 @@ void OpenglWidget::paintGL()
 
 void OpenglWidget::resizeGL(int w, int h)
 {
-	m_pMatrix.setToIdentity();
-	m_pMatrix.perspective(45.0f, GLfloat(w) / (GLfloat)h, 0.01f, 100.0f);
+	projM.setToIdentity();
+	projM.perspective(75.0f, GLfloat(w) / (GLfloat)h, 1.0f, 1000.0f);
 }
 
 void OpenglWidget::mousePressEvent(QMouseEvent *event)
@@ -265,7 +270,7 @@ void OpenglWidget::speedset(GLint spe)
 
 void OpenglWidget::timeset(GLint tim)
 {
-	times = tim;
+	times = tim*60;
 }
 
 void OpenglWidget::set_pause()
@@ -278,3 +283,12 @@ void OpenglWidget::set_start()
 	pause = GL_FALSE;
 }
 
+void OpenglWidget::set_light_switch_off()
+{
+	lightSwitch = GL_FALSE;
+}
+
+void OpenglWidget::set_light_switch_on()
+{
+	lightSwitch = GL_TRUE;
+}

@@ -72,6 +72,12 @@
     <ClCompile Include="BallShader.cpp">
       <Filter>Source Files\paint_layer</Filter>
     </ClCompile>
+    <ClCompile Include="CoreBallShader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ball.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="Mainwindow.h">
@@ -114,6 +120,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="constant.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CoreBallShader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ball.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
