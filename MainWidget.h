@@ -5,6 +5,7 @@
 #include <qlabel.h>
 #include<qslider.h>
 #include<qdatetimeedit.h>
+#include<qdockwidget.h>
 #include <OpenglWidget.h>
 
 class MainWidget :
@@ -19,32 +20,28 @@ public:
 	void set_speed();
 
 
-	QPushButton *button1;
-	QPushButton *button2;
-	QPushButton *button3;
-	QPushButton *button4;
-	QPushButton *button5;
-	QPushButton *button6;
-	QPushButton *button7;
-	QPushButton *button8;
-	QPushButton *button9;
-
 	QPushButton *button_pause;
 	QPushButton *button_start;
 
 	QPushButton *button_lighton;
 	QPushButton *button_lightoff;
 
+	QDateTimeEdit *date_time;
 	QSlider *slider;
 
-	QDateTimeEdit *date_time;
+	QLabel *fps_label;
+
+public slots:
+	void on_fps_changed(int num) const;
 
 private:
 	QHBoxLayout *main_vlayout;
 	QVBoxLayout *leftlayout;
 	QVBoxLayout *rightlayout;
-	QGridLayout *layout;
 	QVBoxLayout *layout1;
 	QVBoxLayout *layout2;
+
+	
+
 };
 

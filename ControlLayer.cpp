@@ -10,14 +10,15 @@ ControlLayer::ControlLayer()
 	openglwin = new OpenglWidget(mainwidget);
 
 	//set their size
-	mainwindow->setMinimumWidth(1100);
+	mainwindow->setMinimumWidth(1130);
 	mainwindow->setMinimumHeight(900);
-	mainwidget->setMinimumSize(1100, 900);
+	mainwidget->setMinimumSize(1030, 900);
 	openglwin->setMinimumSize(900, 900);
 
 	//set their layout
 	mainwindow->set_window_layout(mainwidget);	
 	mainwidget->set_widget_layout(openglwin);
+	mainwindow->set_window_dock();
 
 	//set the signal and slot
 	set_connect();
@@ -40,24 +41,26 @@ MainWindow* ControlLayer::get_mainwindow()
 
 void ControlLayer::set_connect()
 {
-	QObject::connect(mainwidget->button1, SIGNAL(clicked()), openglwin, SLOT(sun()));
-	QObject::connect(mainwidget->button2, SIGNAL(clicked()), openglwin, SLOT(mercury()));
-	QObject::connect(mainwidget->button3, SIGNAL(clicked()), openglwin, SLOT(venus()));
-	QObject::connect(mainwidget->button4, SIGNAL(clicked()), openglwin, SLOT(earth()));
-	QObject::connect(mainwidget->button5, SIGNAL(clicked()), openglwin, SLOT(mars()));
-	QObject::connect(mainwidget->button6, SIGNAL(clicked()), openglwin, SLOT(jupiter()));
-	QObject::connect(mainwidget->button7, SIGNAL(clicked()), openglwin, SLOT(saturn()));
-	QObject::connect(mainwidget->button8, SIGNAL(clicked()), openglwin, SLOT(uranus()));
-	QObject::connect(mainwidget->button9, SIGNAL(clicked()), openglwin, SLOT(neptune()));
+	QObject::connect(mainwindow->button1, SIGNAL(clicked()), openglwin, SLOT(sun()));
+	QObject::connect(mainwindow->button2, SIGNAL(clicked()), openglwin, SLOT(mercury()));
+	QObject::connect(mainwindow->button3, SIGNAL(clicked()), openglwin, SLOT(venus()));
+	QObject::connect(mainwindow->button4, SIGNAL(clicked()), openglwin, SLOT(earth()));
+	QObject::connect(mainwindow->button5, SIGNAL(clicked()), openglwin, SLOT(mars()));
+	QObject::connect(mainwindow->button6, SIGNAL(clicked()), openglwin, SLOT(jupiter()));
+	QObject::connect(mainwindow->button7, SIGNAL(clicked()), openglwin, SLOT(saturn()));
+	QObject::connect(mainwindow->button8, SIGNAL(clicked()), openglwin, SLOT(uranus()));
+	QObject::connect(mainwindow->button9, SIGNAL(clicked()), openglwin, SLOT(neptune()));
 
 	QObject::connect(mainwidget->button_pause, &QPushButton::clicked, openglwin, &OpenglWidget::set_pause);
 	QObject::connect(mainwidget->button_start, &QPushButton::clicked, openglwin, &OpenglWidget::set_start);
 	QObject::connect(mainwidget->button_lighton, &QPushButton::clicked, openglwin, &OpenglWidget::set_light_switch_on);
 	QObject::connect(mainwidget->button_lightoff, &QPushButton::clicked, openglwin, &OpenglWidget::set_light_switch_off);
 
+	QObject::connect(mainwidget->date_time, &QDateTimeEdit::dateChanged, this, &ControlLayer::set_times);
 	QObject::connect(mainwidget->slider, &QSlider::valueChanged, this, &ControlLayer::set_speed);
 
-	QObject::connect(mainwidget->date_time, &QDateTimeEdit::dateChanged, this, &ControlLayer::set_times);
+	QObject::connect(openglwin, &OpenglWidget::fpschanged, mainwidget, &MainWidget::on_fps_changed);
+
 
 }
 

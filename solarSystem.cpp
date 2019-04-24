@@ -48,6 +48,10 @@ void solarSystem::render_system(QOpenGLExtraFunctions *f, QMatrix4x4 &projM,
 {
 	if (1 == 1)
 	{
+		glMatrixMode(GL_PROJECTION);
+		glLoadIdentity();
+		gluPerspective(75, 1, 1, 1000);
+
 		f->glClearColor(0.0, 0.0, 0.0, 0.0);
 		f->glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		f->glEnable(GL_DEPTH_TEST);
@@ -55,7 +59,7 @@ void solarSystem::render_system(QOpenGLExtraFunctions *f, QMatrix4x4 &projM,
 
 		if (lightSwitch==GL_FALSE)
 		{
-			GLfloat LightAmbient[] = { 0.8f, 0.8f, 0.8f, 1.0f }; 
+			GLfloat LightAmbient[] = { 0.9f, 0.9f, 0.9f, 1.0f }; 
 			GLfloat LightDiffuse[] = { 1.0f, 1.0f, 1.0f, 1.0f }; 
 			GLfloat LightPosition[] = { 0.0f, 0.0f, 0.0f, 1.0f };
 

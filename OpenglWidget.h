@@ -41,6 +41,9 @@ public slots:
 	void set_light_switch_off();
 	void set_light_switch_on();
 
+signals:
+	void fpschanged(int value) const;
+
 protected:
 	void initializeGL() Q_DECL_OVERRIDE;
 	void paintGL() Q_DECL_OVERRIDE;
@@ -48,6 +51,7 @@ protected:
 	void OpenglWidget::mousePressEvent(QMouseEvent *event);
 	void OpenglWidget::mouseMoveEvent(QMouseEvent *event);
 	void check_current_planet();
+	void calculate_frame_rate();
 
 
 private:

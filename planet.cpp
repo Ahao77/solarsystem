@@ -65,6 +65,7 @@ void planet::draw_orbit(Camera* camera, GLfloat distanceFromSun)
 		camera->m_target[0], camera->m_target[1], camera->m_target[1],
 		camera->m_up[0], camera->m_up[1], camera->m_up[2]);
 
+	glColor3f(0.8f, 0.8f, 0.8f);
 	glBegin(GL_LINE_STRIP);
 
 	for (float angle = 0.0f; angle < 6.28f; angle += 0.05f)

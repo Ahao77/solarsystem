@@ -13,7 +13,7 @@ OpenglWidget::OpenglWidget(QWidget *parent)
 	:QOpenGLWidget(parent),current_planet(Sun),speed(60),pause(GL_FALSE),lightSwitch(GL_FALSE)
 {
 	projM.setToIdentity();
-	projM.perspective(75, 1, 1, 1000);
+	projM.perspective(75,1, 0.2, 1000);
 }
 
 
@@ -37,16 +37,12 @@ void OpenglWidget::paintGL()
 {
 	solarsystem->calculatePositions(times);
 
-	
-
-	glMatrixMode(GL_PROJECTION);
-	glLoadIdentity();
-	gluPerspective(75, 1, 1, 1000);
-
 	check_current_planet();
 
 	solarsystem->render_system(QOpenGLContext::currentContext()->extraFunctions(),
 		projM,camera,lightSwitch);
+
+	calculate_frame_rate();
 
 	if (pause == GL_FALSE)
 		times += speed;
@@ -76,10 +72,10 @@ void OpenglWidget::mouseMoveEvent(QMouseEvent *event)
 		camera->angle_xy += dx * rate;
 		camera->angle_z += dy * rate;
 
-		if (camera->angle_xy > PI*3/2)
-			camera->angle_xy = PI*3/2;
-		if (camera->angle_xy < PI / 2)
-			camera->angle_xy = PI / 2;
+		if (camera->angle_xy > PI*5/4)
+			camera->angle_xy = PI*5/4;
+		if (camera->angle_xy < PI*3/4)
+			camera->angle_xy = PI*3/4;
 
 		if (camera->angle_z > PI / 6)
 			camera->angle_z = PI / 6 ;
@@ -92,8 +88,8 @@ void OpenglWidget::mouseMoveEvent(QMouseEvent *event)
 		camera->distance += dy*15*rate;
 	if (camera->distance > 200)
 		camera->distance = 200;
-	if (camera->distance < 2)
-		camera->distance = 2;
+	if (camera->distance < 3)
+		camera->distance = 3;
 	}
 	lastPos = event->pos();
 }
@@ -291,4 +287,19 @@ void OpenglWidget::set_light_switch_off()
 void OpenglWidget::set_light_switch_on()
 {
 	lightSwitch = GL_TRUE;
+}
+
+void OpenglWidget::calculate_frame_rate()
+{
+	static float framesPerSecond = 0.0f;
+	static float lastTime = 0.0f;
+	float currentTime = GetTickCount()*0.001f;
+	++framesPerSecond;
+
+	if (currentTime - lastTime > 1.0f)
+	{
+		lastTime = currentTime;
+		emit fpschanged(framesPerSecond);
+		framesPerSecond = 0;
+	}
 }
