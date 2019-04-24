@@ -37,19 +37,13 @@ void BallShader::render(QOpenGLExtraFunctions *f, QMatrix4x4 &projM,Camera* came
 	glRotatef(ro_angle, 1,0, 0);
 	glRotatef(rotation, 0, 0, 1 );
 
-
-
-	glViewport(0, 0, 900, 900);
-
-	
+	glViewport(0, 0, 1300, 900);
 
 	glEnable(GL_TEXTURE_2D);
 	glBindTexture(GL_TEXTURE_2D, texture);
 	gluQuadricTexture(text, GL_TRUE);
 	gluSphere(text, m_r, 64, 64);
 	glDisable(GL_TEXTURE_2D);
-
-
 
 	glPopMatrix();
 }

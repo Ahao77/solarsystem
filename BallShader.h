@@ -16,7 +16,6 @@ public:
 	void render(QOpenGLExtraFunctions *f, QMatrix4x4 &projM,Camera* camera,
 		 GLfloat* position, float rotation, float ro_angle,GLuint texture, GLfloat distanceFromSun);
 	void send_radius(float r);
-
 protected:
 	GLUquadricObj* text;
 };

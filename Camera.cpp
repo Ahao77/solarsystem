@@ -5,8 +5,6 @@
 #include<qopenglfunctions.h>
 #include<qopenglshaderprogram.h>
 
-
-
 Camera::Camera():m_up(0.0f,0.0f,1.0f)
 {
 	distance = 5;
@@ -22,7 +20,6 @@ Camera::Camera():m_up(0.0f,0.0f,1.0f)
 
 	cameraM.lookAt(m_eye, m_target, m_up);
 }
-
 
 Camera::~Camera()
 {

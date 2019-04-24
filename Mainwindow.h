@@ -17,6 +17,7 @@ class MainWindow : public QMainWindow
 public:
 	MainWindow(QWidget *parent = Q_NULLPTR);
 	~MainWindow();
+	
 	void set_window_layout(MainWidget* mainwidget);
 	void set_window_dock();
 
@@ -38,6 +39,6 @@ private:
 	QWidget *dock_widget_content;
 	QWidget *dock_right1;
 
-
+	QHBoxLayout *opengl_button_layout;
 	QVBoxLayout *layout;
 };

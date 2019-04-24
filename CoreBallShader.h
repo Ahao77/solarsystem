@@ -13,7 +13,7 @@ public:
 	CoreBallShader();
 	~CoreBallShader();
 	void render(QOpenGLExtraFunctions *f, QMatrix4x4 &projM, Camera* camera,
-		QMatrix4x4 &modelM, GLfloat* position, float rotation, float ro_angle, GLuint texture, GLfloat distanceFromSun);
+		QMatrix4x4 *modelM, GLfloat* position, float rotation, float ro_angle, GLuint texture, GLfloat distanceFromSun);
 	void send_radius(float r);
 	void calculate_m_points();
 

@@ -13,7 +13,8 @@ planet::planet(float distanceFromSun, float orbitTime, float rotationTime, float
 	this->radius = radius;
 	this->ro_angle = ro_angle;
 
-	modelM.setToIdentity();
+	modelM = new QMatrix4x4();
+	modelM->setToIdentity();
 
 	tga = new TGA(imagePath);
 	texture = tga->getTextureHandle();
@@ -45,7 +46,7 @@ void planet::render_planet(QOpenGLExtraFunctions *f, QMatrix4x4 &projM,Camera* c
 			projM, camera, this->position, this->rotation, this->ro_angle, this->texture, distanceFromSun);
 }
 
-void planet::core_render_planet(QOpenGLExtraFunctions *f, QMatrix4x4 &projM, Camera* camera)
+void planet::core_render_planet(QOpenGLExtraFunctions *f, QMatrix4x4 projM, Camera* camera)
 {
 		CoreBallShader::send_radius(radius);
 
@@ -76,7 +77,7 @@ void planet::draw_orbit(Camera* camera, GLfloat distanceFromSun)
 	glVertex3f(0.0f, distanceFromSun*distanceScale, 0.0f);
 	glEnd();
 
-	glViewport(0, 0, 900, 900);
+	glViewport(0, 0, 1300, 900);
 
 	glPopMatrix();
 }

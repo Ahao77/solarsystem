@@ -3,8 +3,6 @@
 #include<qopenglfunctions.h>
 #include<qopenglshaderprogram.h>
 
-
-
 class Camera
 {
 public:
@@ -15,8 +13,6 @@ public:
 	GLfloat distance;
 	GLfloat angle_z;
 	GLfloat angle_xy;
-	
-
 };
 
 

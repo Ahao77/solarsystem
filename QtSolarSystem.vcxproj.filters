@@ -73,10 +73,10 @@
       <Filter>Source Files\paint_layer</Filter>
     </ClCompile>
     <ClCompile Include="CoreBallShader.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\paint_layer</Filter>
     </ClCompile>
     <ClCompile Include="ball.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\paint_layer</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -123,10 +123,10 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="CoreBallShader.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\paint_layer</Filter>
     </ClInclude>
     <ClInclude Include="ball.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\paint_layer</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

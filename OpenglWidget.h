@@ -23,7 +23,6 @@ public:
 	void timeset(GLint tim);
 	void speedset(GLint spe);
 
-
 public slots:
 	void sun();
 	void mercury();
@@ -41,6 +40,8 @@ public slots:
 	void set_light_switch_off();
 	void set_light_switch_on();
 
+	void set_star_mode1();
+	void set_star_mode2();
 signals:
 	void fpschanged(int value) const;
 
@@ -52,7 +53,6 @@ protected:
 	void OpenglWidget::mouseMoveEvent(QMouseEvent *event);
 	void check_current_planet();
 	void calculate_frame_rate();
-
 
 private:
 	QMatrix4x4 projM;

@@ -8,12 +8,12 @@ MainWidget::MainWidget(QWidget *parent)
 	:QWidget(parent)
 
 {
-	//new and set the button
-
 	button_pause = new QPushButton("pause", this);
 	button_start = new QPushButton("start", this);
 	button_lighton = new QPushButton("light on", this);
 	button_lightoff = new QPushButton("light off", this);
+	button_starmode1= new QPushButton("star mode1", this);
+	button_starmode2= new QPushButton("star mode2", this);
 
 	slider = new QSlider(Qt::Horizontal);
 	slider->setMinimum(1);
@@ -33,7 +33,6 @@ MainWidget::MainWidget(QWidget *parent)
 
 
 }
-
 
 MainWidget::~MainWidget()
 {
@@ -69,9 +68,13 @@ void MainWidget::set_widget_layout(OpenglWidget*openglwin)
 	layout1->addSpacing(20);
 	layout1->addWidget(fps_label, 2, 0);
 
-	layout1->addSpacing(35);
+	layout1->addSpacing(15);
 	layout2->addWidget(button_lighton, 0, 0);
 	layout2->addWidget(button_lightoff, 1, 0);
+
+	layout2->addSpacing(30);
+	layout2->addWidget(button_starmode1, 0, 0);
+	layout2->addWidget(button_starmode2, 1, 0);
 
 	//set the mainwidget's left part
 	leftlayout->addWidget(openglwin);
@@ -89,8 +92,6 @@ void MainWidget::set_widget_layout(OpenglWidget*openglwin)
 	main_vlayout->addLayout(leftlayout);
 	main_vlayout->addLayout(rightlayout);
 	this->setLayout(main_vlayout);
-
-
 }
 
 void MainWidget::on_fps_changed(int num) const

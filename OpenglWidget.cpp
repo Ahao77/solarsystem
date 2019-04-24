@@ -13,7 +13,7 @@ OpenglWidget::OpenglWidget(QWidget *parent)
 	:QOpenGLWidget(parent),current_planet(Sun),speed(60),pause(GL_FALSE),lightSwitch(GL_FALSE)
 {
 	projM.setToIdentity();
-	projM.perspective(75,1, 0.2, 1000);
+	projM.perspective(75,13.0/9.0, 0.2, 1000);
 }
 
 
@@ -86,8 +86,8 @@ void OpenglWidget::mouseMoveEvent(QMouseEvent *event)
 	else if (event->buttons() & Qt::RightButton)
 	{
 		camera->distance += dy*15*rate;
-	if (camera->distance > 200)
-		camera->distance = 200;
+	if (camera->distance > 100)
+		camera->distance = 100;
 	if (camera->distance < 3)
 		camera->distance = 3;
 	}
@@ -287,6 +287,16 @@ void OpenglWidget::set_light_switch_off()
 void OpenglWidget::set_light_switch_on()
 {
 	lightSwitch = GL_TRUE;
+}
+
+void OpenglWidget::set_star_mode1()
+{
+	solarsystem->star_mode = SMALL_STAR;
+}
+
+void OpenglWidget::set_star_mode2()
+{
+	solarsystem->star_mode = BIG_STAR;
 }
 
 void OpenglWidget::calculate_frame_rate()

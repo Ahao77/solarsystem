@@ -8,9 +8,6 @@ public:
 	~ball();
 	float m_r;
 	virtual void send_radius(float r)=0;
-	
-
-
 
 };
 
