@@ -1,8 +1,19 @@
+/**
+*公司：杭州图华科技有限公司
+*版权信息：图华所有
+*任务：太阳系模拟构建实习作业
+*描述：绘图界面实现
+*
+*版本：1.1
+*作者：叶广平
+*日期：2019/4/25
+**/
+
 #include "OpenglWidget.h"
 #include "Mainwindow.h"
 #include "MainWidget.h"
 #include"constant.h"
-#include<gl/glut.h>
+#include<GL/glut.h>
 #include"planet.h"
 #include<ctime>
 #include<Windows.h>
@@ -36,14 +47,12 @@ void OpenglWidget::initializeGL()
 void OpenglWidget::paintGL() 
 {
 	solarsystem->calculatePositions(times);
-
 	check_current_planet();
 
 	solarsystem->render_system(QOpenGLContext::currentContext()->extraFunctions(),
 		projM,camera,lightSwitch);
 
 	calculate_frame_rate();
-
 	if (pause == GL_FALSE)
 		times += speed;
 	else if(pause == GL_TRUE)
@@ -88,8 +97,8 @@ void OpenglWidget::mouseMoveEvent(QMouseEvent *event)
 		camera->distance += dy*15*rate;
 	if (camera->distance > 100)
 		camera->distance = 100;
-	if (camera->distance < 3)
-		camera->distance = 3;
+	if (camera->distance < 2.5)
+		camera->distance = 2.5;
 	}
 	lastPos = event->pos();
 }

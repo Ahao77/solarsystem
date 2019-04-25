@@ -1,3 +1,14 @@
+/**
+*公司：杭州图华科技有限公司
+*版权信息：图华所有
+*任务：太阳系模拟构建实习作业
+*描述：主界面类
+*
+*版本：1.1
+*作者：叶广平
+*日期：2019/4/25
+**/
+
 #pragma once
 #include <qwidget.h>
 #include <qboxlayout.h>
@@ -18,7 +29,6 @@ public:
 	~MainWidget();
 
 	void set_widget_layout(OpenglWidget*openglwin);
-	void set_speed();
 
 	QPushButton *button_pause;
 	QPushButton *button_start;

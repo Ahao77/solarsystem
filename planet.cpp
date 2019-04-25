@@ -1,5 +1,15 @@
-#include "planet.h"
+/**
+*公司：杭州图华科技有限公司
+*版权信息：图华所有
+*任务：太阳系模拟构建实习作业
+*描述：星球类实现
+*
+*版本：1.1
+*作者：叶广平
+*日期：2019/4/25
+**/
 
+#include "planet.h"
 #include<cmath>
 #include<constant.h>
 #include<gl/freeglut.h>
@@ -27,15 +37,15 @@ planet::~planet()
 
 void planet::calculatePosition(GLint time)
 {
+	//计算当前时间下星球所处角度，并计算公转位置和自转角度
 	float angle= (-time%(orbitTime*24*60)) * 6.28f / (orbitTime*24*60);
-
 	this->rotation = (time%(60*this->rotationTime)) * 360 / (60*this->rotationTime);
-
 	this->position[0] = sin(angle) * this->distanceFromSun;
 	this->position[1] = cos(angle) * this->distanceFromSun;
 	this->position[2] = 0;
 }
 
+//设定半径，绘制轨道，渲染单个星球
 void planet::render_planet(QOpenGLExtraFunctions *f, QMatrix4x4 &projM,Camera* camera)
 {
 		BallShader::send_radius(radius);
@@ -56,6 +66,7 @@ void planet::core_render_planet(QOpenGLExtraFunctions *f, QMatrix4x4 projM, Came
 			projM, camera, modelM ,this->position, this->rotation, this->ro_angle, this->texture, distanceFromSun);
 }
 
+//绘制轨道函数
 void planet::draw_orbit(Camera* camera, GLfloat distanceFromSun)
 {
 	glPushMatrix();
