@@ -18,6 +18,7 @@
 #include<ctime>
 #include<Windows.h>
 #include<iostream>
+#include<cmath>
 
 
 OpenglWidget::OpenglWidget(QWidget *parent)
@@ -156,7 +157,8 @@ void OpenglWidget::check_current_planet()
 		camera->m_eye[0] = camera->m_target[0] + camera->distance * cos(camera->angle_z)*cos(camera->angle_xy);
 		camera->m_eye[1] = camera->m_target[1] + camera->distance * cos(camera->angle_z)*sin(camera->angle_xy);
 		camera->m_eye[2] = camera->m_target[2] + camera->distance * sin(camera->angle_z);
-		camera->m_up = QVector3D::crossProduct(camera->m_eye - camera->m_target, QVector3D(0, -1, 0));
+		camera->m_up = QVector3D{ 0,0,1 };
+	/*	camera->m_up = QVector3D::crossProduct(camera->m_eye - camera->m_target, QVector3D(0, -1, 0));*/
 		break;
 	}
 	case Mars:
@@ -177,9 +179,13 @@ void OpenglWidget::check_current_planet()
 		camera->m_target[1] = solarsystem->jupiter->position[1] * distanceScale;
 		camera->m_target[2] = solarsystem->jupiter->position[2] * distanceScale;
 
-		camera->m_eye[0] =(camera->m_target[0] + camera->distance * cos(camera->angle_z)*cos(camera->angle_xy));
-		camera->m_eye[1] = (camera->m_target[1] + camera->distance * cos(camera->angle_z)*sin(camera->angle_xy));
-		camera->m_eye[2] =(camera->m_target[2] + camera->distance * sin(camera->angle_z));
+		if (camera->distance < 10)
+			camera->distance = 10;
+
+		camera->m_eye[0] =(camera->m_target[0] + camera->distance * abs(cos(camera->angle_z))*cos(camera->angle_xy));
+		camera->m_eye[1] = (camera->m_target[1] + camera->distance * abs(cos(camera->angle_z))*sin(camera->angle_xy));
+		camera->m_eye[2] =(camera->m_target[2] + camera->distance * abs(sin(camera->angle_z)));
+
 		camera->m_up = QVector3D::crossProduct(camera->m_eye - camera->m_target, QVector3D(0, -1, 0));
 		break;
 	} /*(solarsystem->jupiter->radius)/10000**/
@@ -188,7 +194,9 @@ void OpenglWidget::check_current_planet()
 		camera->m_target[0] = solarsystem->saturn->position[0] * distanceScale;
 		camera->m_target[1] = solarsystem->saturn->position[1] * distanceScale;
 		camera->m_target[2] = solarsystem->saturn->position[2] * distanceScale;
-
+		
+		if (camera->distance < 8)
+			camera->distance = 8;
 		camera->m_eye[0] = camera->m_target[0] + camera->distance * cos(camera->angle_z)*cos(camera->angle_xy);
 		camera->m_eye[1] = camera->m_target[1] + camera->distance * cos(camera->angle_z)*sin(camera->angle_xy);
 		camera->m_eye[2] = camera->m_target[2] + camera->distance * sin(camera->angle_z);

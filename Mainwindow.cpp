@@ -14,9 +14,9 @@
 
 MainWindow::MainWindow(QWidget *parent)
 	: QMainWindow(parent)
-	,ui(new Ui::MainwindowClass)
+	, ui(new Ui::MainwindowClass)
 {
-	ui->setupUi(this);	
+	ui->setupUi(this);
 }
 
 MainWindow::~MainWindow()

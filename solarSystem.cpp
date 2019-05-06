@@ -63,7 +63,7 @@ void solarSystem::render_system(QOpenGLExtraFunctions *f, QMatrix4x4 projM,
 	{
 		glMatrixMode(GL_PROJECTION);
 		glLoadIdentity();
-		gluPerspective(75, 13.0/9.0, 1, 1000);
+		gluPerspective(75, 13.0/9.0, 0.2, 2000);
 
 		f->glClearColor(0.0, 0.0, 0.0, 0.0);
 		f->glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -129,7 +129,7 @@ void solarSystem::render_system(QOpenGLExtraFunctions *f, QMatrix4x4 projM,
 	{
 		glMatrixMode(GL_PROJECTION);
 		glLoadIdentity();
-		gluPerspective(75, 13.0 / 9.0, 1, 1000);
+		gluPerspective(75, 13.0 / 9.0, 0.2, 2000);
 
 		f->glClearColor(0.0, 0.0, 0.0, 0.0);
 		f->glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -164,35 +164,35 @@ void solarSystem::draw_star()
 {
 	glBegin(GL_QUADS);
 	// new face
-	glTexCoord2f(0.0f, 0.0f);	glVertex3f(-100.0f, -100.0f, 100.0f);
-	glTexCoord2f(1.0f, 0.0f);	glVertex3f(100.0f, -100.0f, 100.0f);
-	glTexCoord2f(1.0f, 1.0f);	glVertex3f(100.0f, 100.0f, 100.0f);
-	glTexCoord2f(0.0f, 1.0f);	glVertex3f(-100.0f, 100.0f, 100.0f);
+	glTexCoord2f(0.0f, 0.0f);	glVertex3f(-150.0f, -150.0f, 150.0f);
+	glTexCoord2f(1.0f, 0.0f);	glVertex3f(150.0f, -150.0f, 150.0f);
+	glTexCoord2f(1.0f, 1.0f);	glVertex3f(150.0f, 150.0f, 150.0f);
+	glTexCoord2f(0.0f, 1.0f);	glVertex3f(-150.0f, 150.0f, 150.0f);
 	// new face
-	glTexCoord2f(0.0f, 0.0f);	glVertex3f(100.0f, 100.0f, 100.0f);
-	glTexCoord2f(1.0f, 0.0f);	glVertex3f(100.0f, 100.0f, -100.0f);
-	glTexCoord2f(1.0f, 1.0f);	glVertex3f(100.0f, -100.0f, -100.0f);
-	glTexCoord2f(0.0f, 1.0f);	glVertex3f(100.0f, -100.0f, 100.0f);
+	glTexCoord2f(0.0f, 0.0f);	glVertex3f(150.0f, 150.0f, 150.0f);
+	glTexCoord2f(1.0f, 0.0f);	glVertex3f(150.0f, 150.0f, -150.0f);
+	glTexCoord2f(1.0f, 1.0f);	glVertex3f(150.0f, -150.0f, -150.0f);
+	glTexCoord2f(0.0f, 1.0f);	glVertex3f(150.0f, -150.0f, 150.0f);
 	// new face
-	glTexCoord2f(0.0f, 0.0f);	glVertex3f(100.0f, 100.0f, -100.0f);
-	glTexCoord2f(1.0f, 0.0f);	glVertex3f(-100.0f, 100.0f, -100.0f);
-	glTexCoord2f(1.0f, 1.0f);	glVertex3f(-100.0f, -100.0f, -100.0f);
-	glTexCoord2f(0.0f, 1.0f);	glVertex3f(100.0f, -100.0f, -100.0f);
+	glTexCoord2f(0.0f, 0.0f);	glVertex3f(150.0f, 150.0f, -150.0f);
+	glTexCoord2f(1.0f, 0.0f);	glVertex3f(-150.0f, 150.0f, -150.0f);
+	glTexCoord2f(1.0f, 1.0f);	glVertex3f(-150.0f, -150.0f, -150.0f);
+	glTexCoord2f(0.0f, 1.0f);	glVertex3f(150.0f, -150.0f, -150.0f);
 	// new face
-	glTexCoord2f(0.0f, 0.0f);	glVertex3f(-100.0f, -100.0f, -100.0f);
-	glTexCoord2f(1.0f, 0.0f);	glVertex3f(-100.0f, -100.0f, 100.0f);
-	glTexCoord2f(1.0f, 1.0f);	glVertex3f(-100.0f, 100.0f, 100.0f);
-	glTexCoord2f(0.0f, 1.0f);	glVertex3f(-100.0f, 100.0f, -100.0f);
+	glTexCoord2f(0.0f, 0.0f);	glVertex3f(-150.0f, -150.0f, -150.0f);
+	glTexCoord2f(1.0f, 0.0f);	glVertex3f(-150.0f, -150.0f, 150.0f);
+	glTexCoord2f(1.0f, 1.0f);	glVertex3f(-150.0f, 150.0f, 150.0f);
+	glTexCoord2f(0.0f, 1.0f);	glVertex3f(-150.0f, 150.0f, -150.0f);
 	// new face
-	glTexCoord2f(0.0f, 0.0f);	glVertex3f(-100.0f, 100.0f, -100.0f);
-	glTexCoord2f(1.0f, 0.0f);	glVertex3f(100.0f, 100.0f, -100.0f);
-	glTexCoord2f(1.0f, 1.0f);	glVertex3f(100.0f, 100.0f, 100.0f);
-	glTexCoord2f(0.0f, 1.0f);	glVertex3f(-100.0f, 100.0f, 100.0f);
+	glTexCoord2f(0.0f, 0.0f);	glVertex3f(-150.0f, 150.0f, -150.0f);
+	glTexCoord2f(1.0f, 0.0f);	glVertex3f(150.0f, 150.0f, -150.0f);
+	glTexCoord2f(1.0f, 1.0f);	glVertex3f(150.0f, 150.0f, 150.0f);
+	glTexCoord2f(0.0f, 1.0f);	glVertex3f(-150.0f, 150.0f, 150.0f);
 	// new face
-	glTexCoord2f(0.0f, 0.0f);	glVertex3f(-100.0f, -100.0f, -100.0f);
-	glTexCoord2f(1.0f, 0.0f);	glVertex3f(100.0f, -100.0f, -100.0f);
-	glTexCoord2f(1.0f, 1.0f);	glVertex3f(100.0f, -100.0f, 100.0f);
-	glTexCoord2f(0.0f, 1.0f);	glVertex3f(-100.0f, -100.0f, 100.0f);
+	glTexCoord2f(0.0f, 0.0f);	glVertex3f(-150.0f, -150.0f, -150.0f);
+	glTexCoord2f(1.0f, 0.0f);	glVertex3f(150.0f, -150.0f, -150.0f);
+	glTexCoord2f(1.0f, 1.0f);	glVertex3f(150.0f, -150.0f, 150.0f);
+	glTexCoord2f(0.0f, 1.0f);	glVertex3f(-150.0f, -150.0f, 150.0f);
 
 	glEnd();
 }
