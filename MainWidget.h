@@ -1,3 +1,14 @@
+/**
+*公司：杭州图华科技有限公司
+*版权信息：图华所有
+*任务：太阳系模拟构建实习作业
+*描述：主界面类
+*
+*版本：1.1
+*作者：叶广平
+*日期：2019/4/25
+**/
+
 #pragma once
 #include <qwidget.h>
 #include <qboxlayout.h>
@@ -5,6 +16,7 @@
 #include <qlabel.h>
 #include<qslider.h>
 #include<qdatetimeedit.h>
+#include<qdockwidget.h>
 #include <OpenglWidget.h>
 
 class MainWidget :
@@ -15,31 +27,28 @@ class MainWidget :
 public:
 	MainWidget(QWidget *parent = 0);
 	~MainWidget();
+
 	void set_widget_layout(OpenglWidget*openglwin);
-	void set_speed();
-
-
-	QPushButton *button1;
-	QPushButton *button2;
-	QPushButton *button3;
-	QPushButton *button4;
-	QPushButton *button5;
-	QPushButton *button6;
-	QPushButton *button7;
-	QPushButton *button8;
-	QPushButton *button9;
 
 	QPushButton *button_pause;
 	QPushButton *button_start;
-	QSlider *slider;
+	QLabel *fps_label;
+
+	QPushButton *button_lighton;
+	QPushButton *button_lightoff;
+
+	QPushButton *button_starmode1;
+	QPushButton *button_starmode2;
 
 	QDateTimeEdit *date_time;
-
+	QSlider *slider;
+public slots:
+	void on_fps_changed(int num) const;
 private:
 	QHBoxLayout *main_vlayout;
 	QVBoxLayout *leftlayout;
 	QVBoxLayout *rightlayout;
-	QGridLayout *layout;
 	QVBoxLayout *layout1;
+	QVBoxLayout *layout2;
 };
 

@@ -1,5 +1,5 @@
 #version 330 core
-uniform mat4 uPMatrix, camMatrix, uMmatrix;
+uniform mat4 uPMatrix, camMatrix, uMMatrix;
 layout(location = 0) in vec3 aPosition;
 smooth out vec vPosition;
 
